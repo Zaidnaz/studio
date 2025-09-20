@@ -39,16 +39,15 @@ export default function DebateFeed({ messages }: DebateFeedProps) {
               key={index}
               className={cn(
                 "flex items-start gap-3 p-3 rounded-lg animate-in fade-in-20 slide-in-from-bottom-2",
-                msg.speaker === "Moderator" ? "bg-card" : "bg-secondary/50"
+                msg.speaker === "Moderator" ? "bg-card" : msg.speaker === "You" ? "bg-primary/10" : "bg-secondary/50"
               )}
             >
-              <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0">
-                {msg.speaker.charAt(0)}
-                {msg.speaker.split(" ")[1] || ""}
+              <div className={cn("w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0", msg.speaker === "You" && "bg-accent/20 text-accent")}>
+                {msg.speaker === "You" ? "You" : msg.speaker.charAt(0) + (msg.speaker.split(" ")[1] || "")}
               </div>
               <div className="flex-grow">
                 <div className="flex items-baseline gap-2">
-                  <p className="font-bold text-primary">{msg.speaker}</p>
+                  <p className={cn("font-bold", msg.speaker === "You" ? "text-accent" : "text-primary" )}>{msg.speaker}</p>
                   <p className="text-xs text-muted-foreground">
                     {msg.timestamp}
                   </p>

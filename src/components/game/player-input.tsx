@@ -7,13 +7,14 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface PlayerInputProps {
   onTranscript: (transcript: string) => void;
+  disabled?: boolean;
 }
 
-export default function PlayerInput({ onTranscript }: PlayerInputProps) {
+export default function PlayerInput({ onTranscript, disabled = false }: PlayerInputProps) {
   const [inputText, setInputText] = useState("");
 
   const handleSubmit = () => {
-    if (inputText.trim()) {
+    if (inputText.trim() && !disabled) {
       onTranscript(inputText);
       setInputText("");
     }
@@ -36,8 +37,9 @@ export default function PlayerInput({ onTranscript }: PlayerInputProps) {
           placeholder="Type your argument..."
           className="flex-grow resize-none"
           rows={2}
+          disabled={disabled}
         />
-        <Button onClick={handleSubmit} size="icon">
+        <Button onClick={handleSubmit} size="icon" disabled={disabled}>
           <Send className="h-4 w-4" />
           <span className="sr-only">Submit</span>
         </Button>
