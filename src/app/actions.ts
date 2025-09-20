@@ -13,6 +13,10 @@ import {
   getAIPlayerResponse,
   DebateAIPlayerInput,
 } from "@/ai/flows/debate-ai-player";
+import {
+  generateResolution,
+  GenerateResolutionInput,
+} from "@/ai/flows/generate-resolution";
 
 export async function getDilemmaAction(input: GenerateDilemmaScenarioInput) {
   try {
@@ -41,5 +45,15 @@ export async function getAIPlayerResponseAction(input: DebateAIPlayerInput) {
   } catch (error) {
     console.error("Error in getAIPlayerResponseAction:", error);
     return { success: false, error: "Failed to get AI player response." };
+  }
+}
+
+export async function getResolutionAction(input: GenerateResolutionInput) {
+  try {
+    const result = await generateResolution(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error("Error in getResolutionAction:", error);
+    return { success: false, error: "Failed to generate a resolution." };
   }
 }
