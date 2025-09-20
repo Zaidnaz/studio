@@ -7,7 +7,7 @@ import DebateFeed from "./debate-feed";
 import PlayerInput from "./player-input";
 import AiTools from "./ai-tools";
 import { Button } from "@/components/ui/button";
-import { getExpertInsightAction } from "@/app/actions";
+import { getAIPlayerResponseAction } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 
@@ -51,15 +51,20 @@ export default function GameInterface({ dilemma, onEndGame }: GameInterfaceProps
       setDebate(newDebate);
       setIsAiThinking(true);
 
-      const result = await getExpertInsightAction({
+      const debateHistory = newDebate.map(
+        (msg) => `${msg.speaker}: ${msg.message}`
+      );
+
+      const result = await getAIPlayerResponseAction({
         dilemmaDescription: dilemma.scenario,
-        playerQuery: transcript
+        playerArgument: transcript,
+        debateHistory,
       });
 
       if (result.success && result.data) {
         const aiMessage: DebateMessage = {
           speaker: "Player 1",
-          message: result.data.expertInsight,
+          message: result.data.playerResponse,
           timestamp: new Date().toLocaleTimeString(),
         }
         setDebate(prev => [...prev, aiMessage]);

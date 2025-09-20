@@ -37,9 +37,7 @@ const consultAIExpertPrompt = ai.definePrompt({
   prompt: `You are an AI expert providing strategic insights on a given dilemma. Respond to the player's query with a small, short, sweet, and to-the-point insight. The insight should be a single, concise sentence.
 
 Dilemma Description: {{{dilemmaDescription}}}
-Player Query: {{{playerQuery}}}
-
-Expert Insight:`,
+Player Query: {{{playerQuery}}}`,
 });
 
 const consultAIExpertFlow = ai.defineFlow(
