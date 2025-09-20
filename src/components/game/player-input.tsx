@@ -1,70 +1,49 @@
 "use client";
 
-import { useEffect } from "react";
-import { useSpeechRecognition } from "@/hooks/use-speech-recognition";
-import { Mic } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 interface PlayerInputProps {
   onTranscript: (transcript: string) => void;
 }
 
 export default function PlayerInput({ onTranscript }: PlayerInputProps) {
-  const { text, start, stop, isListening, hasSupport } = useSpeechRecognition();
-  const { toast } = useToast();
+  const [inputText, setInputText] = useState("");
 
-  useEffect(() => {
-    if (text) {
-      onTranscript(text);
-    }
-  }, [text, onTranscript]);
-  
-  useEffect(() => {
-    if (!hasSupport && typeof window !== 'undefined') {
-        toast({
-            variant: "destructive",
-            title: "Browser Not Supported",
-            description: "Speech recognition is not available in your browser. Please try Chrome or Edge."
-        })
-    }
-  }, [hasSupport, toast])
-
-  const handlePointerDown = () => {
-    if (hasSupport) {
-      start();
+  const handleSubmit = () => {
+    if (inputText.trim()) {
+      onTranscript(inputText);
+      setInputText("");
     }
   };
 
-  const handlePointerUp = () => {
-    if (hasSupport) {
-      stop();
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleSubmit();
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <button
-        onMouseDown={handlePointerDown}
-        onMouseUp={handlePointerUp}
-        onTouchStart={handlePointerDown}
-        onTouchEnd={handlePointerUp}
-        disabled={!hasSupport}
-        className={cn(
-          "relative flex items-center justify-center w-20 h-20 rounded-full transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-accent/50",
-          isListening
-            ? "bg-accent shadow-accent/50 shadow-[0_0_20px]"
-            : "bg-primary hover:bg-primary/90",
-            !hasSupport && "bg-muted cursor-not-allowed"
-        )}
-      >
-        <Mic className="w-8 h-8 text-primary-foreground" />
-        {isListening && (
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-        )}
-      </button>
+      <div className="w-full max-w-lg flex items-center gap-2">
+        <Textarea
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Type your argument..."
+          className="flex-grow resize-none"
+          rows={2}
+        />
+        <Button onClick={handleSubmit} size="icon">
+          <Send className="h-4 w-4" />
+          <span className="sr-only">Submit</span>
+        </Button>
+      </div>
       <p className="text-sm text-muted-foreground">
-        {isListening ? "Listening..." : "Hold to Speak"}
+        Press Enter to send, Shift+Enter for a new line.
       </p>
     </div>
   );

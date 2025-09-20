@@ -43,7 +43,7 @@ export function useSpeechRecognition(): SpeechRecognitionHook {
 
       recognitionRef.current = recognition;
     } else {
-        console.warn("Speech recognition not supported in this browser.");
+        // console.warn("Speech recognition not supported in this browser.");
     }
     
     return () => {
