@@ -62,29 +62,37 @@ export default function DilemmaSetup({ onGameStart }: DilemmaSetupProps) {
             className="grid grid-cols-3 gap-4"
             disabled={isLoading}
           >
-            <Label
-              htmlFor="easy"
-              className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has(:checked)]:border-primary"
-            >
-              <RadioGroupItem value="easy" id="easy" className="sr-only" />
-              Easy
-            </Label>
-
-            <Label
-              htmlFor="medium"
-              className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has(:checked)]:border-primary"
-            >
-              <RadioGroupItem value="medium" id="medium" className="sr-only" />
-              Medium
-            </Label>
-
-            <Label
-              htmlFor="hard"
-              className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has(:checked)]:border-primary"
-            >
-              <RadioGroupItem value="hard" id="hard" className="sr-only" />
-              Hard
-            </Label>
+            <div>
+              <RadioGroupItem value="easy" id="easy" className="peer sr-only" />
+              <Label
+                htmlFor="easy"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+              >
+                Easy
+              </Label>
+            </div>
+            <div>
+              <RadioGroupItem
+                value="medium"
+                id="medium"
+                className="peer sr-only"
+              />
+              <Label
+                htmlFor="medium"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+              >
+                Medium
+              </Label>
+            </div>
+            <div>
+              <RadioGroupItem value="hard" id="hard" className="peer sr-only" />
+              <Label
+                htmlFor="hard"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+              >
+                Hard
+              </Label>
+            </div>
           </RadioGroup>
         </CardContent>
         <CardFooter>
