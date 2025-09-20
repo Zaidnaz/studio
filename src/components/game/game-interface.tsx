@@ -107,7 +107,7 @@ export default function GameInterface({
           />
           <DebateFeed messages={debate} />
         </div>
-        <aside className="lg:col-span-2 flex flex-col gap-6">
+        <aside className="lg:col-span-2 flex flex-col gap-6 h-full">
           <AiTools dilemmaDescription={dilemma.scenario} />
         </aside>
       </div>
