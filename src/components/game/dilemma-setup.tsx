@@ -62,33 +62,29 @@ export default function DilemmaSetup({ onGameStart }: DilemmaSetupProps) {
             className="grid grid-cols-3 gap-4"
             disabled={isLoading}
           >
-            <div>
+            <Label
+              htmlFor="easy"
+              className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has(:checked)]:border-primary"
+            >
               <RadioGroupItem value="easy" id="easy" className="sr-only" />
-              <Label
-                htmlFor="easy"
-                className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
-              >
-                Easy
-              </Label>
-            </div>
-            <div>
+              Easy
+            </Label>
+
+            <Label
+              htmlFor="medium"
+              className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has(:checked)]:border-primary"
+            >
               <RadioGroupItem value="medium" id="medium" className="sr-only" />
-              <Label
-                htmlFor="medium"
-                className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
-              >
-                Medium
-              </Label>
-            </div>
-            <div>
+              Medium
+            </Label>
+
+            <Label
+              htmlFor="hard"
+              className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has(:checked)]:border-primary"
+            >
               <RadioGroupItem value="hard" id="hard" className="sr-only" />
-              <Label
-                htmlFor="hard"
-                className="flex cursor-pointer flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary"
-              >
-                Hard
-              </Label>
-            </div>
+              Hard
+            </Label>
           </RadioGroup>
         </CardContent>
         <CardFooter>
