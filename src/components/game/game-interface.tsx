@@ -98,16 +98,16 @@ export default function GameInterface({
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-150px)]">
-      <div className="flex-grow grid grid-cols-1 lg:grid-cols-5 gap-6 overflow-hidden">
-        <div className="lg:col-span-3 flex flex-col gap-6 overflow-y-auto pr-2">
+    <div className="flex flex-col gap-6">
+      <div className="flex-grow grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="lg:col-span-3 flex flex-col gap-6">
           <DilemmaDisplay
             scenario={dilemma.scenario}
             difficulty={difficulty}
           />
           <DebateFeed messages={debate} />
         </div>
-        <aside className="lg:col-span-2 flex flex-col gap-6 overflow-y-auto">
+        <aside className="lg:col-span-2 flex flex-col gap-6">
           <AiTools dilemmaDescription={dilemma.scenario} />
         </aside>
       </div>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -13,11 +14,12 @@ interface DebateFeedProps {
 
 export default function DebateFeed({ messages }: DebateFeedProps) {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({
-        top: scrollAreaRef.current.scrollHeight,
+    if (viewportRef.current) {
+      viewportRef.current.scrollTo({
+        top: viewportRef.current.scrollHeight,
         behavior: "smooth",
       });
     }
@@ -32,7 +34,7 @@ export default function DebateFeed({ messages }: DebateFeedProps) {
             </CardTitle>
         </CardHeader>
       <CardContent className="flex-grow overflow-hidden">
-        <ScrollArea className="h-full pr-4" ref={scrollAreaRef}>
+        <ScrollArea className="h-96 pr-4" viewportRef={viewportRef}>
         <div className="space-y-4">
           {messages.map((msg, index) => (
             <div
