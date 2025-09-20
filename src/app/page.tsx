@@ -8,6 +8,7 @@ import ResolutionScreen from "@/components/game/resolution-screen";
 import type { GenerateDilemmaScenarioOutput } from "@/ai/flows/generate-dilemma-scenarios";
 import { DilemmaDynamicsLogo } from "@/components/dilemma-dynamics-logo";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type GameState = "setup" | "playing" | "resolved";
 export type Difficulty = "easy" | "medium" | "hard";
@@ -82,11 +83,14 @@ export default function Home() {
             Dilemma Dynamics
           </h1>
         </div>
-        {gameState !== "setup" && (
-          <Button variant="ghost" onClick={handleRestart}>
-            New Game
-          </Button>
-        )}
+        <div className="flex items-center gap-2">
+          {gameState !== "setup" && (
+            <Button variant="ghost" onClick={handleRestart}>
+              New Game
+            </Button>
+          )}
+          <ThemeToggle />
+        </div>
       </header>
       <main className="flex-grow container mx-auto p-4 md:p-8">
         {renderGameState()}
