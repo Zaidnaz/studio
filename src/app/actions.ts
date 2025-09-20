@@ -17,10 +17,6 @@ import {
   generateResolution,
   GenerateResolutionInput,
 } from "@/ai/flows/generate-resolution";
-import {
-  generateVisualAid,
-  GenerateVisualAidInput,
-} from "@/ai/flows/generate-visual-aids";
 
 export async function getDilemmaAction(input: GenerateDilemmaScenarioInput) {
   try {
@@ -59,15 +55,5 @@ export async function getResolutionAction(input: GenerateResolutionInput) {
   } catch (error) {
     console.error("Error in getResolutionAction:", error);
     return { success: false, error: "Failed to generate a resolution." };
-  }
-}
-
-export async function getVisualAidAction(input: GenerateVisualAidInput) {
-  try {
-    const result = await generateVisualAid(input);
-    return { success: true, data: result };
-  } catch (error) {
-    console.error("Error in getVisualAidAction:", error);
-    return { success: false, error: "Failed to generate visual aid." };
   }
 }
