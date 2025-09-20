@@ -34,12 +34,12 @@ const consultAIExpertPrompt = ai.definePrompt({
   name: 'consultAIExpertPrompt',
   input: {schema: ConsultAIExpertInputSchema},
   output: {schema: ConsultAIExpertOutputSchema},
-  prompt: `You are an AI expert providing strategic insights and relevant information about a given dilemma based on a player's query.
+  prompt: `You are an AI expert providing strategic insights on a given dilemma. Respond to the player's query with a small, short, sweet, and to-the-point insight. The insight should be a single, concise sentence.
 
 Dilemma Description: {{{dilemmaDescription}}}
 Player Query: {{{playerQuery}}}
 
-Provide a concise and informative expert insight to help the player make a more informed decision.`,
+Expert Insight:`,
 });
 
 const consultAIExpertFlow = ai.defineFlow(
