@@ -84,7 +84,9 @@ export default function AiTools({ dilemmaDescription }: AiToolsProps) {
         </div>
         <ScrollArea className="flex-grow rounded-md border p-4">
           <div className="space-y-4">
-            {isConsultingExpert && <Skeleton className="w-full h-20" />}
+            {isConsultingExpert && insights.length === 0 && (
+              <Skeleton className="w-full h-20" />
+            )}
             {insights
               .slice()
               .reverse()

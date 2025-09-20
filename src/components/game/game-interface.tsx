@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { getAIPlayerResponseAction } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import type { Difficulty } from "@/app/page";
 
 interface GameInterfaceProps {
