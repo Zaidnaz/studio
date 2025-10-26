@@ -40,13 +40,6 @@ next-env.d.ts
 .genkit/*
 .env*
 
-# local build/indexing artifacts
-/.idx/
-/.modified
-.turbo/
-.idea/
-.fleet/
-
 # firebase
 firebase-debug.log
 firestore-debug.log
